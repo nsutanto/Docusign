@@ -10,9 +10,26 @@ namespace Solution
 
         public string Validate(string commandLineString)
         {
-            DressCommand dressCommand = CommandFactory.Instance.CreateDressCommand(commandLineString);
+            string output = "";
+            try
+            {
+                DressCommand dressCommand = CommandFactory.Instance.CreateDressCommand(commandLineString);
 
-            string output = dressCommand.Validate();
+                if (dressCommand != null)
+                {
+                    output = dressCommand.Validate();
+                }
+                else
+                {
+                    // not sure what is the requirement for invalid inputs.. Make it fail for now.
+                    output = "fail";
+                }
+            }
+            catch (Exception ex)
+            {
+                // Got exception... let's just output it for now
+                output = ex.Message;
+            }
 
             return output;
         }
