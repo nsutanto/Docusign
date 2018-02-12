@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace Solution
 {
-    public class CommandFactory
+    internal class CommandFactory
     {
         private static CommandFactory instance;
 
         private CommandFactory() { }
 
-        public static CommandFactory Instance
+        internal static CommandFactory Instance
         {
             get
             {
@@ -21,9 +21,9 @@ namespace Solution
             }
         }
              
-        public IDressCommand CreateDressCommand(string commandListString)
+        internal DressCommand CreateDressCommand(string commandListString)
         {
-            IDressCommand dressCommand = null;
+            DressCommand dressCommand = null;
 
             WEATHER_ENUM weather = getWeather(commandListString);
             List<COMMAND_ENUM> commandList = createCommandList(commandListString);
