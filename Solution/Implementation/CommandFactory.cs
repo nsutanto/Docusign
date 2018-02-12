@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Solution
 {
-    public class CommandFactory : ICommandFactory
+    public class CommandFactory
     {
         private static CommandFactory instance;
 
@@ -20,8 +20,7 @@ namespace Solution
                 return instance;
             }
         }
-
-     
+             
         public IDressCommand CreateDressCommand(string commandListString)
         {
             IDressCommand dressCommand = null;

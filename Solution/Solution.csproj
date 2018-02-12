@@ -10,4 +10,7 @@
     <Folder Include="Implementation\Command\" />
     <Folder Include="Implementation\EnumToStringConverter\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Interface\ICommandFactory.cs" />
+  </ItemGroup>
 </Project>
