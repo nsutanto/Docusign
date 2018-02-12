@@ -37,7 +37,7 @@ namespace Solution
 
         // Make it abstract function since no default implementation and each implementation will be different
         // This is to make sure all command is executed
-        abstract protected bool ValidateLeaveHouse();
+        abstract protected bool IsAllCommandsExecuted();
 
         // Validate each command. Put it to 'stack' IssuedCommandList
         // That way we can check if the command is duplicate or not
@@ -209,6 +209,23 @@ namespace Solution
         {
             IssuedCommandList.Add(COMMAND_ENUM.TAKE_OFF_PAJAMAS);
             return true;
+        }
+
+        virtual protected bool ValidateLeaveHouse()
+        {
+            bool isValid = false;
+            // Make sure all command is executed. It will call the implementation class.
+            if (IsAllCommandsExecuted())
+            {
+                IssuedCommandList.Add(COMMAND_ENUM.LEAVE_HOUSE);
+                isValid = true;
+            }
+            else
+            {
+                IssuedCommandList.Add(COMMAND_ENUM.FAIL);
+                isValid = false;
+            }
+            return isValid;
         }
     }
 }

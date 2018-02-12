@@ -44,18 +44,16 @@ namespace Solution
             return isValid;
         }
 
-        override protected bool ValidateLeaveHouse()
+        override protected bool IsAllCommandsExecuted()
         {
             bool isValid = false;
             // Assume leave house is the last one, so we have 5 commands
             if (IssuedCommandList.Count == 5)
             {
-                IssuedCommandList.Add(COMMAND_ENUM.LEAVE_HOUSE);
                 isValid = true;
             }
             else
             {
-                IssuedCommandList.Add(COMMAND_ENUM.FAIL);
                 isValid = false;
             }
             return isValid;
