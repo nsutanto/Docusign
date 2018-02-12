@@ -3,7 +3,7 @@ namespace Solution
 {
     public enum COMMAND_ENUM
     {
-        INIT,
+        FAIL,
         PUT_ON_FOOTWEAR,
         PUT_ON_HEADWEAR,
         PUT_ON_SOCKS,
@@ -12,5 +12,12 @@ namespace Solution
         PUT_ON_PANTS,
         LEAVE_HOUSE,
         TAKE_OFF_PAJAMAS
+    }
+
+    public enum WEATHER_ENUM
+    {
+        INVALID_WEATHER,
+        HOT,
+        COLD
     }
 }

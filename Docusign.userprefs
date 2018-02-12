@@ -1,11 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Solution/Constant.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Solution/CommandFactory.cs">
     <Files>
-      <File FileName="Solution/DressCommand.cs" Line="2" Column="1" />
-      <File FileName="Solution/IDressCommand.cs" Line="6" Column="9" />
-      <File FileName="Solution/HotDressCommand.cs" Line="10" Column="9" />
-      <File FileName="Solution/ColdDressCommand.cs" Line="8" Column="10" />
-      <File FileName="Solution/Constant.cs" Line="4" Column="25" />
+      <File FileName="Solution/DressCommand.cs" Line="27" Column="10" />
+      <File FileName="Solution/IDressCommand.cs" Line="3" Column="2" />
+      <File FileName="Solution/HotDressCommand.cs" Line="8" Column="50" />
+      <File FileName="Solution/ColdDressCommand.cs" Line="9" Column="10" />
+      <File FileName="Solution/Constant.cs" Line="19" Column="25" />
+      <File FileName="Solution/ICommandFactory.cs" Line="10" Column="2" />
+      <File FileName="Solution/CommandFactory.cs" Line="97" Column="31" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

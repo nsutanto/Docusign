@@ -3,6 +3,6 @@ namespace Solution
 {
     public interface IDressCommand
     {
-        bool Validate();
+        string Validate();
     }
 }
