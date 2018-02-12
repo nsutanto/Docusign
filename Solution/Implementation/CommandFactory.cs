@@ -52,6 +52,7 @@ namespace Solution
             return dressCommand;
         }
 
+        // Check weather, if it is hot or cold.
         private WEATHER_ENUM getWeather(string commandListString)
         {
             string[] splitCommand = commandListString.Split(' ');
@@ -70,6 +71,7 @@ namespace Solution
             }
         }
 
+        // Convert string to list of command_enum
         private List<COMMAND_ENUM> createCommandList(string commandListString)
         {
             string[] splitCommand = commandListString.Split(' ');
