@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Solution
 {
+    // DressCommand parent abstract class.
     internal abstract class DressCommand
     {
         private List<COMMAND_ENUM> CommandList
@@ -22,7 +23,8 @@ namespace Solution
             EnumToStringConverter = enumToStringConverter;
         }
 
-        public string Validate()
+        // This is the validate function
+        internal string Validate()
         {
             string output = "";
 
@@ -33,10 +35,12 @@ namespace Solution
             return output;
         }
 
-        // Make it abstract function since no default implementation and  each implementation will be different
+        // Make it abstract function since no default implementation and each implementation will be different
+        // This is to make sure all command is executed
         abstract protected bool ValidateLeaveHouse();
 
-
+        // Validate each command. Put it to 'stack' IssuedCommandList
+        // That way we can check if the command is duplicate or not
         private void ValidateCommandSequence()
         {
             bool isCommandValid = true;
@@ -92,6 +96,7 @@ namespace Solution
             }
         }
 
+        // Check if it is duplicate command
         private bool IsDuplicate(COMMAND_ENUM command)
         {
             bool retValue = true;
@@ -103,6 +108,7 @@ namespace Solution
             return retValue;
         }
 
+        // Perform initial check, to make sure the first one is take off pajamas
         virtual protected bool performPreValidation()
         {
             bool isValid = false;
@@ -120,9 +126,11 @@ namespace Solution
             return isValid;
         }
 
+        // Perform Validate Footwear
         virtual protected bool ValidateFootwear()
         {
             bool isValid = false;
+            // Need to wear socks and pants before footwear
             if (IssuedCommandList.Contains(COMMAND_ENUM.PUT_ON_SOCKS) &&
                 IssuedCommandList.Contains(COMMAND_ENUM.PUT_ON_PANTS))
             {
@@ -137,9 +145,11 @@ namespace Solution
             return isValid;
         }
 
+        // Perform validate headwear
         virtual protected bool ValidateHeadwear()
         {
             bool isValid = false;
+            // Need to wear shirt before headwear
             if (IssuedCommandList.Contains(COMMAND_ENUM.PUT_ON_SHIRT))
             {
                 IssuedCommandList.Add(COMMAND_ENUM.PUT_ON_HEADWEAR);
@@ -153,21 +163,25 @@ namespace Solution
             return isValid;
         }
 
+        // Perform validate socks
         virtual protected bool ValidateSocks()
         {   
             IssuedCommandList.Add(COMMAND_ENUM.PUT_ON_SOCKS);
             return true;
         }
 
+        // Perform validate shirt
         virtual protected bool ValidateShirt()
         {
             IssuedCommandList.Add(COMMAND_ENUM.PUT_ON_SHIRT);
             return true;
         }
 
+        // Perform validate jacket
         virtual protected bool ValidateJacket()
         {
             bool isValid = false;
+            // Need to validate shirt before wearing jacket
             if (IssuedCommandList.Contains(COMMAND_ENUM.PUT_ON_SHIRT))
             {
                 IssuedCommandList.Add(COMMAND_ENUM.PUT_ON_JACKET);
@@ -181,6 +195,7 @@ namespace Solution
             return isValid;
         }
 
+        // Perform validate pants
         virtual protected bool ValidatePants()
         {
             IssuedCommandList.Add(COMMAND_ENUM.PUT_ON_SHIRT);

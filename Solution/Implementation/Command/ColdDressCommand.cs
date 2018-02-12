@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Solution
 {
+    // Cold command implementations
     internal class ColdDressCommand : DressCommand
     {
         internal ColdDressCommand(List<COMMAND_ENUM> commandList, EnumToStringConverter enumToStringConverter) 
