@@ -56,12 +56,13 @@ namespace Solution
         private WEATHER_ENUM getWeather(string commandListString)
         {
             string[] splitCommand = commandListString.Split(' ');
+            string weather = splitCommand[0].ToUpper();
 
-            if (splitCommand[0].ToUpper() == HOT_STR)
+            if (weather == HOT_STR)
             {
                 return WEATHER_ENUM.HOT;
             }
-            else if (splitCommand[1].ToUpper() == COLD_STR)
+            else if (weather == COLD_STR)
             {
                 return WEATHER_ENUM.COLD;    
             }
@@ -74,10 +75,14 @@ namespace Solution
         // Convert string to list of command_enum
         private List<COMMAND_ENUM> createCommandList(string commandListString)
         {
-            string[] splitCommand = commandListString.Split(' ');
-            string commands = splitCommand[1];
-
-            string[] commandArray = commands.Trim().Split(',');
+            // Get the first index of white space to get the substring of commands (remove HOT or COLD)
+            int indexFirstSpace = commandListString.IndexOf(' ');
+            // Get the commands (remove HOT or COLD)
+            string commands = commandListString.Substring(indexFirstSpace + 1);
+            // Trim white space
+            commands = commands.Replace(" ", string.Empty);
+            // Split from comma to create array of commands
+            string[] commandArray = commands.Split(',');
 
             List<COMMAND_ENUM> commandList = new List<COMMAND_ENUM>();
 
