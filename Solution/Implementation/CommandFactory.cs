@@ -5,6 +5,9 @@ namespace Solution
 {
     internal class CommandFactory
     {
+        private const string HOT_STR = "HOT";
+        private const string COLD_STR = "COLD";
+
         private static CommandFactory instance;
 
         private CommandFactory() { }
@@ -30,12 +33,16 @@ namespace Solution
 
             if (weather == WEATHER_ENUM.HOT)
             {
+                // Create hot string converter
                 HotEnumToStringConverter hotEnumStringConverter = new HotEnumToStringConverter();
+                // Create hot dress command
                 dressCommand = new HotDressCommand(commandList, hotEnumStringConverter);    
             }
             else if (weather == WEATHER_ENUM.COLD)
             {
+                // Create cold string converter
                 ColdEnumToStringConverter coldEnumStringConverter = new ColdEnumToStringConverter();
+                // Create cold dress command
                 dressCommand = new ColdDressCommand(commandList, coldEnumStringConverter);
             }
             else
@@ -49,11 +56,11 @@ namespace Solution
         {
             string[] splitCommand = commandListString.Split(' ');
 
-            if (splitCommand[0].ToUpper() == "HOT")
+            if (splitCommand[0].ToUpper() == HOT_STR)
             {
                 return WEATHER_ENUM.HOT;
             }
-            else if (splitCommand[1].ToUpper() == "COLD")
+            else if (splitCommand[1].ToUpper() == COLD_STR)
             {
                 return WEATHER_ENUM.COLD;    
             }
