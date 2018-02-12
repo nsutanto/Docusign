@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Solution
 {
-    internal abstract class DressCommand : IDressCommand
+    internal abstract class DressCommand
     {
         private List<COMMAND_ENUM> CommandList
         {

@@ -12,5 +12,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Interface\ICommandFactory.cs" />
+    <Compile Remove="Interface\IDressCommand.cs" />
   </ItemGroup>
 </Project>
