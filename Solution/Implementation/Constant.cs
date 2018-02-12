@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Solution
 {
-    public enum COMMAND_ENUM
+    internal enum COMMAND_ENUM
     {
         FAIL,
         PUT_ON_FOOTWEAR,
@@ -14,7 +14,7 @@ namespace Solution
         TAKE_OFF_PAJAMAS
     }
 
-    public enum WEATHER_ENUM
+    internal enum WEATHER_ENUM
     {
         INVALID_WEATHER,
         HOT,
