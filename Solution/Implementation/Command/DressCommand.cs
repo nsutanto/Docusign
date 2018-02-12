@@ -26,12 +26,7 @@ namespace Solution
         {
             string output = "";
 
-            bool isValid = performPreValidation();
-
-            if (isValid)
-            {
-                isValid = ValidateCommandSequence();
-            }
+            ValidateCommandSequence();
 
             output = EnumToStringConverter.ConvertCommandSequenceEnumToString(IssuedCommandList);
 
@@ -41,57 +36,60 @@ namespace Solution
         // Make it abstract function since no default implementation and  each implementation will be different
         abstract protected bool ValidateLeaveHouse();
 
-    
-        private bool ValidateCommandSequence()
+
+        private void ValidateCommandSequence()
         {
             bool isCommandValid = true;
-            foreach (COMMAND_ENUM command in CommandList)
-            {
-                if (!IsDuplicate(command))
-                {
-                    switch (command)
-                    {
-                        case COMMAND_ENUM.PUT_ON_FOOTWEAR:
-                            isCommandValid = ValidateFootwear();
-                            break;
-                        case COMMAND_ENUM.PUT_ON_HEADWEAR:
-                            isCommandValid = ValidateHeadwear();
-                            break;
-                        case COMMAND_ENUM.PUT_ON_SOCKS:
-                            isCommandValid = ValidateSocks();
-                            break;
-                        case COMMAND_ENUM.PUT_ON_SHIRT:
-                            isCommandValid = ValidateShirt();
-                            break;
-                        case COMMAND_ENUM.PUT_ON_JACKET:
-                            isCommandValid = ValidateJacket();
-                            break;
-                        case COMMAND_ENUM.PUT_ON_PANTS:
-                            isCommandValid = ValidatePants();
-                            break;
-                        case COMMAND_ENUM.LEAVE_HOUSE:
-                            // This will force the inherited class to implement
-                            isCommandValid = ValidateLeaveHouse();
-                            break;
-                        default:
-                            IssuedCommandList.Add(COMMAND_ENUM.FAIL);
-                            isCommandValid = false;
-                            break;
-                    }
 
-                    if (!isCommandValid)
+            if (performPreValidation())
+            {
+                foreach (COMMAND_ENUM command in CommandList)
+                {
+                    if (!IsDuplicate(command))
                     {
-                        // Command is not valid. Stop
+                        switch (command)
+                        {
+                            case COMMAND_ENUM.PUT_ON_FOOTWEAR:
+                                isCommandValid = ValidateFootwear();
+                                break;
+                            case COMMAND_ENUM.PUT_ON_HEADWEAR:
+                                isCommandValid = ValidateHeadwear();
+                                break;
+                            case COMMAND_ENUM.PUT_ON_SOCKS:
+                                isCommandValid = ValidateSocks();
+                                break;
+                            case COMMAND_ENUM.PUT_ON_SHIRT:
+                                isCommandValid = ValidateShirt();
+                                break;
+                            case COMMAND_ENUM.PUT_ON_JACKET:
+                                isCommandValid = ValidateJacket();
+                                break;
+                            case COMMAND_ENUM.PUT_ON_PANTS:
+                                isCommandValid = ValidatePants();
+                                break;
+                            case COMMAND_ENUM.LEAVE_HOUSE:
+                                // This will force the inherited class to implement
+                                isCommandValid = ValidateLeaveHouse();
+                                break;
+                            default:
+                                IssuedCommandList.Add(COMMAND_ENUM.FAIL);
+                                isCommandValid = false;
+                                break;
+                        }
+
+                        if (!isCommandValid)
+                        {
+                            // Command is not valid. Stop
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        // It is duplicate. Break
                         break;
                     }
                 }
-                else
-                {
-                    // It is duplicate. Break
-                    break;
-                }
             }
-            return isCommandValid;
         }
 
         private bool IsDuplicate(COMMAND_ENUM command)
@@ -110,8 +108,13 @@ namespace Solution
             bool isValid = false;
             if (CommandList[0] == COMMAND_ENUM.TAKE_OFF_PAJAMAS)
             {
-                IssuedCommandList.Add(COMMAND_ENUM.FAIL);
+                IssuedCommandList.Add(COMMAND_ENUM.TAKE_OFF_PAJAMAS);
                 isValid = true;
+            }
+            else
+            {
+                IssuedCommandList.Add(COMMAND_ENUM.FAIL);
+                isValid = false;
             }
 
             return isValid;
