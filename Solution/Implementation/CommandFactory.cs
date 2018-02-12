@@ -27,14 +27,17 @@ namespace Solution
             IDressCommand dressCommand = null;
 
             WEATHER_ENUM weather = getWeather(commandListString);
+            List<COMMAND_ENUM> commandList = createCommandList(commandListString);
 
             if (weather == WEATHER_ENUM.HOT)
             {
-                //dressCommand = new HotDressCommand()
+                HotEnumToStringConverter hotEnumStringConverter = new HotEnumToStringConverter();
+                dressCommand = new HotDressCommand(commandList, hotEnumStringConverter);    
             }
             else if (weather == WEATHER_ENUM.COLD)
             {
-                //dressCommand = new ColdDressCommand();
+                ColdEnumToStringConverter coldEnumStringConverter = new ColdEnumToStringConverter();
+                dressCommand = new ColdDressCommand(commandList, coldEnumStringConverter);
             }
             else
             {

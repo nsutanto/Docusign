@@ -3,20 +3,23 @@ using System.Collections.Generic;
 
 namespace Solution
 {
-    public abstract class DressCommand : IDressCommand
+    internal abstract class DressCommand : IDressCommand
     {
-        protected List<COMMAND_ENUM> CommandList
+        private List<COMMAND_ENUM> CommandList
         {
             get;
-            private set;
+            set;
         }
 
         protected List<COMMAND_ENUM> IssuedCommandList;
 
-        public DressCommand(List<COMMAND_ENUM> commandList) 
+        private EnumToStringConverter EnumToStringConverter;
+
+        internal DressCommand(List<COMMAND_ENUM> commandList, EnumToStringConverter enumToStringConverter) 
         {
             CommandList = commandList;
             IssuedCommandList = new List<COMMAND_ENUM>();
+            EnumToStringConverter = enumToStringConverter;
         }
 
         public string Validate()
@@ -30,7 +33,7 @@ namespace Solution
                 isValid = ValidateCommandSequence();
             }
 
-            output = ConvertCommandSequenceEnumToString();
+            output = EnumToStringConverter.ConvertCommandSequenceEnumToString(IssuedCommandList);
 
             return output;
         }
@@ -38,9 +41,7 @@ namespace Solution
         // Make it abstract function since no default implementation and  each implementation will be different
         abstract protected bool ValidateLeaveHouse();
 
-        // Make it abstract function since no default implementation and  each implementation will be different
-        abstract protected string ConvertCommandSequenceEnumToString();
-
+    
         private bool ValidateCommandSequence()
         {
             bool isCommandValid = true;
